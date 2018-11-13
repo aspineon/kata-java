@@ -8,18 +8,33 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
 public class GreetingControllerTest {
+
     @Autowired
     MockMvc mockMvc;
 
     @Test
     public void test_getGreeting_withoutParameter() throws Exception {
         this.mockMvc.perform(get("/greeting"))
-        .andExpect(status().isOk());
+                .andExpect(content().string("Hello, World!"))
+                .andExpect(status().isOk());
     }
+
+    @Test
+    public void test_getGreeting_withParameter() throws Exception {
+        // GIVEN
+        final String name = "Shawn";
+
+        this.mockMvc.perform(get("/greeting").param("name", name))
+                .andExpect(content().string("Hello, Shawn!"))
+                .andExpect(status().isOk());
+    }
+
+
 }
