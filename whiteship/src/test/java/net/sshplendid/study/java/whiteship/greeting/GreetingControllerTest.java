@@ -8,7 +8,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -22,9 +24,13 @@ public class GreetingControllerTest {
     @Test
     public void test_getGreeting_withoutParameter() throws Exception {
         this.mockMvc.perform(get("/greeting"))
-                .andExpect(content().string("Hello, World!"))
+                .andDo(print())
+//                .andExpect(content().string("Hello, World!"))
+                .andExpect(jsonPath("$.content").value("Hello, World!"))
                 .andExpect(status().isOk());
     }
+
+
 
     @Test
     public void test_getGreeting_withParameter() throws Exception {
@@ -32,9 +38,9 @@ public class GreetingControllerTest {
         final String name = "Shawn";
 
         this.mockMvc.perform(get("/greeting").param("name", name))
-                .andExpect(content().string("Hello, Shawn!"))
+                .andDo(print())
+//                .andExpect(content().string("Hello, Shawn!"))
+                .andExpect(jsonPath("$.content").value("Hello, Shawn!"))
                 .andExpect(status().isOk());
     }
-
-
 }
