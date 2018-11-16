@@ -1,5 +1,6 @@
 package net.sshplendid.study.java.whiteship.greeting;
 
+import net.sshplendid.study.java.whiteship.common.CommonControllerTests;
 import org.junit.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

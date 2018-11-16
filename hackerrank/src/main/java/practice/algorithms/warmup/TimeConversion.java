@@ -16,19 +16,22 @@ public class TimeConversion {
      */
     static String timeConversion(String s) {
 
-        final String ampm = s.substring(s.length()-2);
-        int hh = Integer.parseInt(s.substring(0, 2));
-        final int mm = Integer.parseInt(s.substring(3, 5));
-        final int ss = Integer.parseInt(s.substring(6, 8));
+        final boolean isPM = s.substring(s.length()-2).equals("PM");
+        int hour = Integer.parseInt(s.substring(0, 2));
+        final int minute = Integer.parseInt(s.substring(3, 5));
+        final int second = Integer.parseInt(s.substring(6, 8));
 
-        if("PM".equals(ampm)) {
-            if(hh != 12) {
-                hh += 12;
+        if(hour == 12) {
+            if(!isPM) {
+                hour = 0;
             }
-        } else if(hh == 12) {
-            hh = 0;
+        } else {
+            if(isPM) {
+                hour += 12;
+            }
         }
-        return String.format("%02d:%02d:%02d", hh, mm, ss);
+
+        return String.format("%02d:%02d:%02d", hour, minute, second);
     }
 
     private static final Scanner scan = new Scanner(System.in);
