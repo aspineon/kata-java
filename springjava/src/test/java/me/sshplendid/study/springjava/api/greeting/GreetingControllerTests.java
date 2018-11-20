@@ -34,7 +34,7 @@ public class GreetingControllerTests {
         this.mockMvc.perform(get("/api/greeting").param("name", name))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").exists())
-                .andExpect(jsonPath("content").)
+                .andExpect(jsonPath("content").value(String.format("Hello, %s!", name)))
                 ;
     }
 }
