@@ -10,6 +10,7 @@
 rootProject.name = 'kata'
 
 include 'hackerrank'
-include 'spring'
 include 'java'
 include 'whiteship'
+include 'springkt'
+include 'springjava'
