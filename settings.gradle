@@ -11,6 +11,7 @@ rootProject.name = 'kata'
 
 include 'hackerrank'
 include 'java'
+include 'kotlin'
 include 'whiteship'
 include 'springkt'
 include 'springjava'
