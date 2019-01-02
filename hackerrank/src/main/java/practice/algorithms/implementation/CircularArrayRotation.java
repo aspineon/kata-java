@@ -1,4 +1,4 @@
-package practice.algorithms.imiplementation;
+package practice.algorithms.implementation;
 
 import org.junit.Test;
 
